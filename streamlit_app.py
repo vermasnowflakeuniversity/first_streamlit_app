@@ -1,3 +1,4 @@
+#using streamlit for developing GUI
 import streamlit
 
 
@@ -10,3 +11,11 @@ streamlit.text("🥑🍞 Avocado Toast")
 
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
+
+# using pandas
+import pandas
+
+#read file from s3 through pandas
+my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
+#to show the dataframe in tabular for in streamlit
+streamlit.dataframe(my_fruit_list)
