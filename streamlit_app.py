@@ -1,6 +1,8 @@
 #using streamlit for developing GUI
 import streamlit
-
+import snowflake.connector
+import pandas
+import requests
 
 streamlit.title("My Parents New Healthy Diner")
 streamlit.header("Breakfast Favorites")
@@ -13,7 +15,7 @@ streamlit.text("🥑🍞 Avocado Toast")
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
 # using pandas
-import pandas
+# import pandas
 
 #read file from s3 through pandas
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
@@ -36,7 +38,7 @@ fruit_choice = streamlit.text_input('What fruit would you like information about
 streamlit.write('The user entered ', fruit_choice)
 
 # request module
-import requests
+# import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+str(fruit_choice).lower())
 # streamlit.text(fruityvice_response.json())
 
@@ -45,10 +47,10 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
 
-
+streamlit.stop()
 
 # working with snowflake-connector-python module
-import snowflake.connector
+# import snowflake.connector
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
